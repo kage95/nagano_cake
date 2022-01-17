@@ -1,24 +1,13 @@
-# README
+#ながのCAKE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##お店紹介
+-長野県にある洋菓子店  
+-受注生産でケーキ、プリンなどを販売
 
-Things you may want to cover:
+##概要
+-ながのCAFEのECサイト
 
-* Ruby version
+##実装機能
 
-* System dependencies
+##Gem
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
