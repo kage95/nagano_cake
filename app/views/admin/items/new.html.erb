@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row mb-2">
+    <h4 class="offset-1 bg-light">商品登録</h1>
+  </div>
+  
+  <div class="container w-50">
+    <%=form_with model: @item,local:true do |f| %>
+      <div class="row mb-3">
+        <label for="inputEmail3" class="col-4 col-form-label">商品画像</label>
+        <div class="col-8">
+          <%= f.file_field :item_image,accept:"image/*"%>
+        </div>
+      </div>
+      
+      <div class="row mb-3">
+        <label for="inputPassword3" class="col-4 col-form-label">商品名</label>
+        <div class="col-8">
+          <%= f.text_field :name,autofocus:true,class:"form-control"%>
+        </div>
+      </div>
+      
+      <div class="row mb-3">
+        <label for="inputPassword3" class="col-4 col-form-label">商品説明</label>
+        <div class="col-8">
+          <%= f.text_area :introduction,autofocus:true,class:"form-control"%>
+        </div>
+      </div>
+      
+      <div class="row mb-3">
+        <label for="inputPassword3" class="col-4 col-form-label">ジャンル</label>
+        <div class="col-8">
+          <%= f.select :genre, ["ケーキ","プリン"],{include_blank: "選択して下さい"},{class:"form-control"}%>
+        </div>
+      </div>
+      
+      <div class="row mb-3">
+        <label for="inputPassword3" class="col-4 col-form-label">税抜価格</label>
+        <div class="col-8">
+          <%= f.text_field :price,autofocus:true,class:"form-control",placeholder:1000%>
+        </div>
+      </div>
+       
+      <div class="row mb-3 align-items-center">
+        <label class="col-form-label col-4">Radios</label>
+        <div class="col-8">
+          <div class="form-check-inline">
+            <div class="form-check">
+              <label class="form-check-label"><%= f.radio_button :is_active, "販売中" %>販売中</label>
+            </div>
+            <div class="form-check">
+               <label class="form-check-label"><%= f.radio_button :is_active, "販売停止中" %>販売停止中</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="action d-flex justify-content-center">
+        <%= f.submit "新規登録",class:"btn btn-success"%>
+      </div>
+    <%end%>
+  </div>
+</div>
