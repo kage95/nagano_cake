@@ -4,11 +4,11 @@
   </div>
   
   <div class="container w-50">
-    <%=form_with model: @item,local:true do |f| %>
+    <%=form_with model: @item,url:admin_items_path,local:true do |f| %>
       <div class="row mb-3">
         <label for="inputEmail3" class="col-4 col-form-label">商品画像</label>
         <div class="col-8">
-          <%= f.file_field :item_image,accept:"image/*"%>
+          <%= f.file_field :image_id,accept:"image/*"%>
         </div>
       </div>
       
@@ -29,26 +29,26 @@
       <div class="row mb-3">
         <label for="inputPassword3" class="col-4 col-form-label">ジャンル</label>
         <div class="col-8">
-          <%= f.select :genre, ["ケーキ","プリン"],{include_blank: "選択して下さい"},{class:"form-control"}%>
+          <%= f.select :genre_id, @genres.map{ |genre| [genre.name,genre.id] },{include_blank: "選択して下さい"},{class:"form-control"}%>
         </div>
       </div>
       
       <div class="row mb-3">
         <label for="inputPassword3" class="col-4 col-form-label">税抜価格</label>
         <div class="col-8">
-          <%= f.text_field :price,autofocus:true,class:"form-control",placeholder:1000%>
+          <%= f.text_field :price,autofocus:true,class:"form-control",placeholder:1000 %>
         </div>
       </div>
        
       <div class="row mb-3 align-items-center">
-        <label class="col-form-label col-4">Radios</label>
+        <label class="col-form-label col-4">販売ステータス</label>
         <div class="col-8">
           <div class="form-check-inline">
             <div class="form-check">
-              <label class="form-check-label"><%= f.radio_button :is_active, "販売中" %>販売中</label>
+              <label class="form-check-label"><%= f.radio_button :is_active, "true" %>販売中</label>
             </div>
             <div class="form-check">
-               <label class="form-check-label"><%= f.radio_button :is_active, "販売停止中" %>販売停止中</label>
+               <label class="form-check-label"><%= f.radio_button :is_active, "false" %>販売停止中</label>
             </div>
           </div>
         </div>
