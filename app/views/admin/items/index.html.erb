@@ -14,7 +14,11 @@
         <% @items.each do |item| %>
           <tr>
             <th scope="row"><%= item.id %></th>
-            <td><%= item.name %></td>
+            <td>
+              <%= link_to(admin_item_path(item.id)) do%>
+                <%= item.name %>
+              <% end%>
+              </td>
             <td><%= item.price %></td>
             <td><%= item.genre.name %></td>
             <td><%= item.is_active ? "販売中" : "停止中"%></td>
