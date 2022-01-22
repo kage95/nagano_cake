@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get "/admin" => "homes#top"
   get "homes/about"=> "homes#about",as:"about"
+  
   devise_for :admin,skip: [:registrations, :passwords],controllers:{
     sessions: "admin/sessions"
   }
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
      sessions: "public/sessions"
   }
   
-  resources :items,only:[:index,:show]
+  get "customers/my_page" => "public/customers#show"
+  
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

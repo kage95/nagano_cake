@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row mb-2">
+    <h4 class="offset-1 bg-light">マイページ</h1>
+  </div>
+  
+  <div class="row align-items-center mb-3">
+    <h6 class="mr-4 m-0">登録情報</h6>
+    <%= link_to "編集する",edit_customer_registration_path,class:"btn btn-success btn-sm" %>
+  </div>
+  <div class="row">
+    <table class="table table-bordered" style="width:60%">
+      <tbody>
+        <tr>
+          <th style="width:20%" class="table-active">氏名</th>
+          <td><%= @customer.last_name + @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th style="width:20%" class="table-active">カナ</th>
+          <td><%= @customer.last_name_kana + @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th style="width:20%" class="table-active">郵便番号</th>
+          <td><%= @customer.postal_code %></td>
+        </tr>
+        <tr>
+          <th style="width:20%" class="table-active">住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th style="width:20%" class="table-active">電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <th style="width:20%" class="table-active">メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="">
+    <h6>配送先</h6>
+  </div>
+  
+  <div class="">
+    <h6>注文履歴</h6>
+  </div>
+  
+</div>

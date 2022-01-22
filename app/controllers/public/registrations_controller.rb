@@ -11,6 +11,10 @@ class Public::RegistrationsController < Devise::RegistrationsController
     @customer = Customer.new
   end
   
+  def edit
+    @customer = current_customer
+  end
+  
   
   private
   
