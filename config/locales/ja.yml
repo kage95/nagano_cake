@@ -4,3 +4,13 @@
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+    activerecord:
+      models:
+        customer: カスタマー
+        admin: 管理者
+      attributes:
+        customer:
+          first_name: (名)
+          last_name: (姓)
+          first_name_kana: (メイ)
+          last_name_kana: (セイ)
