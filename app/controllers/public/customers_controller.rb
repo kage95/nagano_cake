@@ -20,6 +20,11 @@ class Public::CustomersController < ApplicationController
     
   end
   
+  def withdraw
+    current_customer.toggle!(:is_delete)
+    redirect_to root_path
+  end
+  
   private
   
   def customer_params
