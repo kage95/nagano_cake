@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resource :customers
     resources :addresses,except: [:show,:new]
+    resources :items,only:[:index,:show]
   end
   
   devise_for :customers,skip: [:passwords,],controllers:{
