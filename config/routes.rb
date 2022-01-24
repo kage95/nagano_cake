@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resource :customers,except: [:new,:create]
     resources :addresses,except: [:show,:new]
     resources :items,only:[:index,:show]
+    resources :cart_items,only:[:index,:create,:update,:destroy]
   end
   
   devise_for :customers,skip: [:passwords,],controllers:{
