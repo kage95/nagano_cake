@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get "homes/about"=> "homes#about",as:"about"
   
   namespace :admin do
-    resources :genres
-    resources :items
+    resources :genres,only: [:index,:create,:edit,:update]
+    resources :items,except: [:destroy]
+    resources :customers,only: [:index,:create,:edit,:update]
   end
   
   devise_for :admin,skip: [:registrations, :passwords],controllers:{
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   patch "customers/withdraw" => "public/customers#withdraw",as:"withdraw"
   
   scope module: :public do
-    resource :customers
+    resource :customers,except: [:new,:create]
     resources :addresses,except: [:show,:new]
     resources :items,only:[:index,:show]
   end
