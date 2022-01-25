@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "customers/my_page" => "public/customers#show",as:"my_page"
   get "customers/unsubscribe" => "public/customers#unsubscribe",as:"unsubscribe"
   patch "customers/withdraw" => "public/customers#withdraw",as:"withdraw"
+  delete "cart_items/destroy_all" => "public/cart_items#destroy_all",as:"destroy_all"
   
   scope module: :public do
     resource :customers,except: [:new,:create]
