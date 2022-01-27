@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_070058) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "costomer_id", null: false
-    t.string "shipping_portal", null: false
+    t.string "shipping_postal", null: false
     t.string "shipping_address", null: false
     t.string "shipping_name", null: false
     t.boolean "order_status", default: true

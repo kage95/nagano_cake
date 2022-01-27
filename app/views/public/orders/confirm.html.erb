@@ -1,0 +1,47 @@
+<div class="container">
+  
+  <div class="row mb-2">
+    <h4 class="offset-1 bg-light">注文情報確認</h1>
+  </div>
+  
+  <div class="row mb-4">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="table-active" width="500">商品名</th>
+          <th class="table-active" width="175">単価（税込）</th>
+          <th class="table-active" width="175">数量</th>
+          <th class="table-active" width="175">小計</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <tr class="font-weight-bold">
+            <td class="align-middle">
+              <%= attachment_image_tag cart_item.item ,:image,format: 'jpeg',size: '50x50'%>
+              <%= cart_item.item.name %>
+            </td>
+            <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+            <td class="align-middle"><%= cart_item.amount %></td>
+            <td class="align-middle"><%= cart_item.subtotal.to_s(:delimited) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <%= @order.total_payment %>
+  <%= form_with @order,orders_path,method: :post,local:true do |f| %>
+    <%= f.hidden_field :shipping_postal,:value =>@order.shipping_postal %>
+    <%= f.hidden_field :shipping_address,:value =>@order.shipping_address %>
+    <%= f.hidden_field :shipping_name,:value =>@order.shipping_name %>
+    <%= f.hidden_field :total_payment,:value =>@order.total_payment %>
+    <%= f.hidden_field :postage,:value =>@order.postage %>
+    <%= f.hidden_field :payment_method,:value =>@order.payment_method %>
+    
+    <%= f.submit "確定"%>
+  <%end%>
+  
+
+</div>

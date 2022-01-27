@@ -2,7 +2,7 @@ class CreateOrders < ActiveRecord::Migration[6.1]
   def change
     create_table :orders do |t|
       t.integer :costomer_id,null:false
-      t.string :shipping_portal,null:false
+      t.string :shipping_postal,null:false
       t.string :shipping_address,null:false
       t.string :shipping_name,null:false
       t.boolean :order_status,default:"1"
