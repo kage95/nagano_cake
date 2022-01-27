@@ -17,12 +17,15 @@ Rails.application.routes.draw do
   get "customers/unsubscribe" => "public/customers#unsubscribe",as:"unsubscribe"
   patch "customers/withdraw" => "public/customers#withdraw",as:"withdraw"
   delete "cart_items/destroy_all" => "public/cart_items#destroy_all",as:"destroy_all"
+  get "orders/complete" => "public/orders#complete",as:"complete"
+  post "orders/confirm" => "public/orders#confirm",as:"confirm"
   
   scope module: :public do
     resource :customers,except: [:new,:create]
     resources :addresses,except: [:show,:new]
     resources :items,only:[:index,:show]
     resources :cart_items,only:[:index,:create,:update,:destroy]
+    resource :orders,only:[:index,:new,:create,:show]
   end
   
   devise_for :customers,skip: [:passwords,],controllers:{
