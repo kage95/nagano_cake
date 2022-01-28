@@ -31,17 +31,39 @@
     </table>
   </div>
   
-  <%= @order.total_payment %>
-  <%= form_with @order,orders_path,method: :post,local:true do |f| %>
-    <%= f.hidden_field :shipping_postal,:value =>@order.shipping_postal %>
-    <%= f.hidden_field :shipping_address,:value =>@order.shipping_address %>
-    <%= f.hidden_field :shipping_name,:value =>@order.shipping_name %>
-    <%= f.hidden_field :total_payment,:value =>@order.total_payment %>
-    <%= f.hidden_field :postage,:value =>@order.postage %>
-    <%= f.hidden_field :payment_method,:value =>@order.payment_method %>
-    
-    <%= f.submit "確定"%>
-  <%end%>
+  <div class="row justify-content-between">
+    <table class="table table-borderless col-6">
+      <tr>
+        <th class="font-weight-bold">支払い方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <th class="font-weight-bold">お届け先</th>
+        <td><%= @order.address_display %></td>
+      </tr>
+    </table>
+    <table class="table table-bordered col-4">
+      <tbody>
+        <tr>
+          <th class="table-active" width="175">送料</th>
+          <td width="175"><%= @order.postage.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="table-active" width="175">商品合計</th>
+          <td width="175"><%= (@order.total_payment - @order.postage).to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="table-active" width="175">請求金額</th>
+          <td width="175"><%= @order.total_payment.to_s(:delimited) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   
+  <div class="row justify-content-center mt-5">
+    <%= form_with model:@order,url:orders_path,method: :post,local:true do |f| %>
+      <%= f.submit "注文を確定する" ,class:"btn btn-success "%>
+    <%end%>
+  </div>
 
 </div>
