@@ -7,6 +7,9 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.postage = 800
+    @order.total_payment = @cart_items.inject(@order.postage) { |sum, item| sum + item.subtotal }
     if params[:order][:select_address] == "0"
       @order.shipping_postal = current_customer.postal_code
       @order.shipping_address = current_customer.address
@@ -17,18 +20,19 @@ class Public::OrdersController < ApplicationController
       @order.shipping_postal = address.postal_code
       @order.shipping_name = address.name
     end
-    @order.postage = 800
-    @order.total_payment = current_customer.cart_items.inject(@order.postage) { |sum, item| sum + item.subtotal }
+    session[:order] = @order
   end
   
   def create
+    @order = Order.new(session[:order])
     @order.save
-    redirect_to root_path
+    session.delete(:order)
+    redirect_to complete_path
   end
   
   private
   
   def order_params
-    params.require(:order).permit(:payment_method,:shipping_address,:shipping_postal,:shipping_name,:total_payment,:postage)
+    params.require(:order).permit(:payment_method,:shipping_address,:shipping_postal,:shipping_name,:total_payment,:postage,:customer_id)
   end
 end
