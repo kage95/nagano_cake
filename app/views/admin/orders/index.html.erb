@@ -16,7 +16,7 @@
         <% @orders.each do |order| %>
           <tr>
             <td class="align-middle"><%=  link_to (l order.created_at, format: :short),admin_order_path(order.id) %></td>
-            <td class="align-middle"><%= order.customer.first_name + '' + order.customer.last_name %></td>
+            <td class="align-middle"><%= order.customer.last_name + '' + order.customer.first_name %></td>
             <td class="align-middle"><%= order.order_details.inject(0){ | amount,detail | amount + detail.count} %></td>
             <td class="align-middle"><%= order.order_status_i18n %></td>
           </tr>

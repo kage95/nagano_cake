@@ -14,6 +14,12 @@
           making: "製作中"
           preparation: "発送準備中"
           sent: "発送済み"
+      order_detail:
+        making_status:
+          not_startable: "着手不可"
+          waiting: "制作待ち"
+          making: "製作中"
+          complete: "制作完了"
     activerecord:
       models:
         customer: カスタマー
