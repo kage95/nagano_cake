@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     resources :addresses,except: [:show,:new]
     resources :items,only:[:index,:show]
     resources :cart_items,only:[:index,:create,:update,:destroy]
-    resource :orders,only:[:index,:new,:create,:show]
+    resources :orders,only:[:index,:new,:create,:show]
   end
   
   devise_for :customers,skip: [:passwords,],controllers:{

@@ -1,5 +1,9 @@
 class Public::OrdersController < ApplicationController
   
+  def index
+    @orders = current_customer.orders
+  end
+  
   def new
     @order = Order.new
   end
@@ -26,7 +30,15 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(session[:order])
     @order.save
-    session.delete(:order)
+    current_customer.cart_items.each do |cart_item|
+      order_detail = OrderDetail.new(order_id:@order.id)
+      order_detail.item_id = cart_item.item.id
+      order_detail.count = cart_item.amount
+      order_detail.tax_inclouded_price = (cart_item.item.price)*1.1.floor
+      order_detail.save
+    end
+    session[:order] = nil
+    current_customer.cart_items.destroy_all
     redirect_to complete_path
   end
   
