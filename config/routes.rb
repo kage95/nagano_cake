@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :genres,only: [:index,:create,:edit,:update]
     resources :items,except: [:destroy]
     resources :customers,only: [:index,:edit,:update,:show]
+    resources :orders,only:[:show,:update,:index]
+    resources :order_details,only:[:update]
   end
   
   devise_for :admin,skip: [:registrations, :passwords],controllers:{
