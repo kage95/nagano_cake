@@ -4,6 +4,10 @@ class Public::OrdersController < ApplicationController
     @orders = current_customer.orders
   end
   
+  def show
+    @order = Order.find(params[:id])
+  end
+  
   def new
     @order = Order.new
   end
