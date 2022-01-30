@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get "/admin" => "homes#top"
   get "homes/about"=> "homes#about",as:"about"
   
+  get "admin/searches/search" => "admin/searches#search",as:"admin_search"
+  
   namespace :admin do
     resources :genres,only: [:index,:create,:edit,:update]
     resources :items,except: [:destroy]
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   delete "cart_items/destroy_all" => "public/cart_items#destroy_all",as:"destroy_all"
   get "orders/complete" => "public/orders#complete",as:"complete"
   post "orders/confirm" => "public/orders#confirm",as:"confirm"
+  get "searches/search" => "public/searches#search",as:"search"
   
   scope module: :public do
     resource :customers,except: [:new,:create]

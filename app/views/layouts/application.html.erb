@@ -21,29 +21,46 @@
           <h1 class="navbar-brand">nagano cake</h1>
         <%end%>
       </h1>
-      <% if admin_signed_in?%>
-        <ul class="navbar-nav">
-          <li class="nav-item"><%= link_to "商品一覧",admin_items_path,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "会員一覧",admin_customers_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "注文履歴一覧",admin_orders_path,class:"nav-link"  %></li>
-          <li class="nav-item"><%= link_to "ジャンル一覧",admin_genres_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト",destroy_admin_session_path,method: :detele,class:"nav-link"  %></li>
-        </ul>
-      <%elsif customer_signed_in? %>
-        <ul class="navbar-nav">
-          <li class="nav-item"><%= link_to "マイページ",my_page_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "商品一覧",items_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "カート",cart_items_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト",destroy_customer_session_path ,method: :delete,class:"nav-link" %></li>
-        </ul>
-      <%else%>
-        <ul class="navbar-nav">
-          <li class="nav-item"><%= link_to "About",about_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "商品一覧",items_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "新規登録",new_customer_registration_path ,class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログイン",new_customer_session_path ,class:"nav-link" %></li>
-        </ul>
-      <% end%>
+      <div class="">
+        <% if admin_signed_in?%>
+          <ul class="navbar-nav">
+            <li class="nav-item"><%= link_to "商品一覧",admin_items_path,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "会員一覧",admin_customers_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "注文履歴一覧",admin_orders_path,class:"nav-link"  %></li>
+            <li class="nav-item"><%= link_to "ジャンル一覧",admin_genres_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "ログアウト",destroy_admin_session_path,method: :detele,class:"nav-link"  %></li>
+          </ul>
+          <div class="input-group">
+            <%= form_with url:admin_search_path ,class:"form-inline", method: :get,local:true do |f| %>
+              <%= f.text_field :content ,class:"form-control"%>
+              <%= f.submit "検索",class:"btn btn-primary ml-1"%>
+            <%end%>
+          </div>
+        <%elsif customer_signed_in? %>
+          <%= "#{current_customer.last_name}さん、こんにちは！" %>
+          <ul class="navbar-nav">
+            <li class="nav-item"><%= link_to "マイページ",my_page_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "商品一覧",items_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "カート",cart_items_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "ログアウト",destroy_customer_session_path ,method: :delete,class:"nav-link" %></li>
+          </ul>
+          <div class="input-group">
+            <%= form_with url:search_path ,class:"form-inline", method: :get,local:true do |f| %>
+              <%= f.text_field :content ,class:"form-control"%>
+              <%= f.submit "検索",class:"btn btn-primary ml-1"%>
+            <%end%>
+          </div>
+        <%else%>
+          <ul class="navbar-nav">
+            <li class="nav-item"><%= link_to "About",about_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "商品一覧",items_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "新規登録",new_customer_registration_path ,class:"nav-link" %></li>
+            <li class="nav-item"><%= link_to "ログイン",new_customer_session_path ,class:"nav-link" %></li>
+          </ul>
+        <% end%>
+        
+      </div>
+      
     </header>
   </div>
     <%= yield %>
