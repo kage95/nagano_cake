@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "orders/complete" => "public/orders#complete",as:"complete"
   post "orders/confirm" => "public/orders#confirm",as:"confirm"
   get "searches/search" => "public/searches#search",as:"search"
+  get "searches/genre_search" => "public/searches#genre_search",as:"genre_search"
   
   scope module: :public do
     resource :customers,except: [:new,:create]
