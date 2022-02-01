@@ -22,6 +22,7 @@ class Public::CustomersController < ApplicationController
   
   def withdraw
     current_customer.toggle!(:is_delete)
+    reset_session
     redirect_to root_path
   end
   
