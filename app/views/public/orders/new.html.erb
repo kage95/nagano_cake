@@ -33,15 +33,15 @@
         <div>
           <%= f.radio_button :select_address ,"2" %>
           <%= f.label :select_address,"新しいお届け先"%></br>
-          <div class="row">
-            <%= f.label :shipping_postal,"郵便番号（ハイフンなし）"%>
-            <%= f.text_field :shipping_postal, autofocus: true,class:"form-control",placeholder:"0000000" %>
+          <div class="row flex-column mb-2">
+            <div class="col-6"><%= f.label :shipping_postal,"郵便番号（ハイフンなし）"%></div>
+            <div class="col-6"><%= f.text_field :shipping_postal, autofocus: true,class:"form-control",placeholder:"0000000" %></div>
           </div>
-          <div class="row">
+          <div class="row flex-column mb-2">
             <div class="col-3"><%= f.label :shipping_address,"住所"%></div>
             <div class="col-9"><%= f.text_field :shipping_address, autofocus: true,class:"form-control",placeholder:"東京都渋谷区" %></div>
           </div>
-          <div class="row">
+          <div class="row flex-column">
             <div class="col-3"><%= f.label :shipping_name,"名前" %></div>
             <div class="col-9"><%= f.text_field :shipping_name, autofocus: true,class:"form-control",placeholder:"名前" %></div>
           </div>
@@ -49,8 +49,8 @@
       </div>
     </div>
     
-    <div class="action">
-      <%= f.submit "確認画面に進む" %>
+    <div class="row justify-content-center mb-3">
+      <%= f.submit "確認画面に進む",class:"btn btn-primary" %>
     </div>
   <%end%>
 </div>

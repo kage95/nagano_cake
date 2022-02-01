@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_070058) do
     t.integer "item_id", null: false
     t.integer "tax_inclouded_price", null: false
     t.integer "count", null: false
-    t.integer "making_status", default: 1
+    t.integer "making_status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_070058) do
     t.string "shipping_postal", null: false
     t.string "shipping_address", null: false
     t.string "shipping_name", null: false
-    t.integer "order_status", default: 1
+    t.integer "order_status", default: 0
     t.integer "postage", default: 800
     t.integer "total_payment", null: false
     t.integer "payment_method", default: 1
