@@ -2,7 +2,7 @@
   <div class="row">
     
     <div class="col-3">
-      
+      <%= render "public/searches/genre_search",genres:@genres %>
     </div>
     
     <div class="col-9">
@@ -15,7 +15,7 @@
           <p class="font-weight-bold"><%= @item.introduction %></p>
           
           <h5 class="mt-5"><%= @item.is_active ? "販売中" : "売り切れ" %></h5>
-          <strong><%= number_to_currency(@item.price,unit: "¥",strip_insignificant_zeros: true)%>（税込)</strong>
+          <strong><%= number_to_currency(@item.price*1.1,unit: "¥",strip_insignificant_zeros: true)%>（税込)</strong>
           
           <% if @item.is_active==true %>
             <div class="mt-3">

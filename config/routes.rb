@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "homes/about"=> "homes#about",as:"about"
   
   get "admin/searches/search" => "admin/searches#search",as:"admin_search"
+  get "admin/searches/genre_search" => "admin/searches#genre_search",as:"admin_genre_search"
   
   namespace :admin do
     resources :genres,only: [:index,:create,:edit,:update]
